@@ -1,0 +1,45 @@
+components:
+  certManager: true
+  nginx: false
+  mariadb: true
+  minio: true
+
+# passes to subchart cert-manager
+certManager: {}
+
+# passes to subchart ingress-nginx
+nginx: {}
+
+# passes to subchart mariadb
+mariadb:
+  auth:
+    database: "app_db"
+    username: "app"
+    password: "password"
+    rootPassword: "root#password"
+    architecture: "standalone"
+    volumePermissions.enabled: true
+
+# passes to subchart minio
+minio:
+  mode: "standalone"
+  persistence:
+    size: 8Gi
+  auth:
+    rootUser: "minio"
+    rootPassword: "minio.secret"
+  defaultBuckets: "uploads"
+  disableWebUI: true
+  apiIngress:
+    enabled: true
+    hostname: "minio.local"
+    tls: true
+    annotations:
+      cert-manager.io/cluster-issuer: "acme"
+
+clusterIssuer:
+  enabled: false
+  name: "acme"
+  email: "admin@example.org"
+  http01:
+    ingress: "traefik"

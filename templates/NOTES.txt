@@ -1,0 +1,1 @@
+To get valid certificate from CertManager, you have to create a ClusterIssuer named "acme".
