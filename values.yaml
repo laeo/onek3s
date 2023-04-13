@@ -1,6 +1,6 @@
 components:
   certManager: true
-  nginx: false
+  nginx: true
   mariadb: true
   minio: true
 
@@ -8,7 +8,13 @@ components:
 certManager: {}
 
 # passes to subchart ingress-nginx
-nginx: {}
+ingressNginx:
+  controller:
+    kind: DaemonSet
+    hostPort:
+      enabled: true
+    # service:
+    #   type: ClusterIP
 
 # passes to subchart mariadb
 mariadb:
@@ -42,4 +48,4 @@ clusterIssuer:
   name: "acme"
   email: "admin@example.org"
   http01:
-    ingress: "traefik"
+    ingress: "nginx"

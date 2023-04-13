@@ -4,16 +4,16 @@
 
 ## 安装 k3s
 
-### 标准安装
+### 标准安装（不推荐）
 
 ```bash
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | sh -s -
 ```
 
 ### 禁用 `traefik` 组件安装
 
 ```bash
-curl -sfL https://get.k3s.io | sh - --disable=traefik
+curl -sfL https://get.k3s.io | sh -s - --disable=traefik
 ```
 
 ## 配置 k3s
