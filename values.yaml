@@ -42,6 +42,7 @@ minio:
     tls: true
     annotations:
       cert-manager.io/cluster-issuer: "acme"
+      nginx.ingress.kubernetes.io/proxy-body-size: "1g"
 
 clusterIssuer:
   enabled: false
